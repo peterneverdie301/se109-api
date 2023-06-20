@@ -16,6 +16,9 @@ const initRouter = (app) => {
   app.use("/api/categories", categoryRoute);
   app.use("/api/suppliers", supplierRoute);
   app.use("/api/purchase-orders", purchaseOrderRoute);
+  app.use("/ping", (req, res) => {
+    return res.json("Ping Pong");
+  });
   app.use("/", (req, res) => {
     return res.json("Hello to Furniture Shop");
   });
