@@ -1,4 +1,5 @@
 const Product = require("../model/product");
+const Review = require("../model/review");
 const getPagination = require("../helper/getPagination");
 
 class ProductController {
@@ -114,8 +115,14 @@ class ProductController {
   readProduct = async (req, res) => {
     try {
       const product = await Product.findById(req.params.id);
+      
+      const reviews = await Review.find({ productId: product._id });
+
       const response = {
-        data: product,
+        data: {
+          ...product._doc,
+          reviews
+        },
         errorCode: 0,
         message: "Success",
       };
@@ -236,6 +243,8 @@ class ProductController {
       return res.json(response);
     }
   };
+
+
   readAllProduct = async (req, res) => {
     try {
       let data;
