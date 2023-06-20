@@ -5,7 +5,6 @@ const connectDB = require("./src/config/db");
 const initRoute = require("./src/routes/index");
 const cors = require("cors");
 
-
 app.use(cors());
 dotenv.config();
 connectDB.connect();
@@ -24,3 +23,5 @@ initRoute(app);
 app.listen(process.env.PORT || 5000, () => {
   console.log("Backend server is running!");
 });
+
+module.exports = app;
